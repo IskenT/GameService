@@ -1,15 +1,15 @@
-[![Github CI/CD](https://img.shields.io/github/workflow/status/IskenT/MultiGameServices/Go)](https://github.com/IskenT/MultiGameServices/actions)
-[![Go Report](https://goreportcard.com/badge/github.com/IskenT/MultiGameServices)](https://goreportcard.com/report/github.com/IskenT/MultiGameServices)
-![Repository Top Language](https://img.shields.io/github/languages/top/IskenT/MultiGameServices)
-![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/IskenT/MultiGameServices)
-![Github Repository Size](https://img.shields.io/github/repo-size/IskenT/MultiGameServices)
-![Github Open Issues](https://img.shields.io/github/issues/IskenT/MultiGameServices)
+[![Github CI/CD](https://img.shields.io/github/workflow/status/IskenT/GameService/Go)](https://github.com/IskenT/GameService/actions)
+[![Go Report](https://goreportcard.com/badge/github.com/IskenT/GameService)](https://goreportcard.com/report/github.com/IskenT/GameService)
+![Repository Top Language](https://img.shields.io/github/languages/top/IskenT/GameService)
+![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/IskenT/GameService)
+![Github Repository Size](https://img.shields.io/github/repo-size/IskenT/GameService)
+![Github Open Issues](https://img.shields.io/github/issues/IskenT/GameService)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![GitHub last commit](https://img.shields.io/github/last-commit/IskenT/MultiGameServices)
-![GitHub contributors](https://img.shields.io/github/contributors/IskenT/MultiGameServices)
+![GitHub last commit](https://img.shields.io/github/last-commit/IskenT/GameService)
+![GitHub contributors](https://img.shields.io/github/contributors/IskenT/GameService)
 ![Simply the best ;)](https://img.shields.io/badge/simply-the%20best%20%3B%29-orange)
 
-# MultiGameServices
+# GameService
 
 ## About project
 - Three servers are implemented in the project: http, gRPC and WebSocket;
