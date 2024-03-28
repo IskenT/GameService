@@ -1,5 +1,4 @@
 [![Github CI/CD](https://img.shields.io/github/workflow/status/IskenT/GameService/Go)](https://github.com/IskenT/GameService/actions)
-[![Go Report](https://goreportcard.com/badge/github.com/IskenT/GameService)](https://goreportcard.com/report/github.com/IskenT/GameService)
 ![Repository Top Language](https://img.shields.io/github/languages/top/IskenT/GameService)
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/IskenT/GameService)
 ![Github Repository Size](https://img.shields.io/github/repo-size/IskenT/GameService)
