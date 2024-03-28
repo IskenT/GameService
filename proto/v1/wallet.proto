@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package v1;
+
+option go_package = "proto/v1";
+
+import "google/api/annotations.proto";
+
+service WalletService {
+    rpc GetBalanceByUserId(GetWalletBalanceRequest) returns (GetWalletBalanceResponse){
+        option(google.api.http) = {
+            get: "/api/wallet/balance/{userID}"
+        };
+    };
+}
+
+
+message GetWalletBalanceRequest {
+  string userID =1;
+}
+
+message GetWalletBalanceResponse {
+  int32 balance = 2;
+}
+
