@@ -22,7 +22,7 @@ Docker-compose is required to run the project.
 
 `docker-compose up --build --remove-orphans` or `make run`
 
-Proto files are located in the proto directory, to start run `make run`
+Proto files are located in the proto directory (`make proto`)
 
 ## API
 - REST Endpoint = `http://localhost:8080/`

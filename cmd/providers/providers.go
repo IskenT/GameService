@@ -27,6 +27,6 @@ func ProvideConsoleLogger(cnf *configs.Config) (logger.Logger, error) {
 	return zerolog.NewZeroLog(os.Stdout)
 }
 
-func ProvideCache() (*cache.Cache, error) {
+func ProvideCache() (cache.Storage, error) {
 	return cache.NewCache(60 * time.Second)
 }

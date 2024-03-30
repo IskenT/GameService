@@ -9,6 +9,13 @@ import (
 )
 
 type (
+	Storage interface {
+		Get(key uuid.UUID) (*Balance, bool)
+		Set(key uuid.UUID, balance Balance) error
+		Deposit(key uuid.UUID, amount int) error
+		Withdraw(key uuid.UUID, amount int) error
+	}
+
 	Balance struct {
 		UserId uuid.UUID
 		Amount int
@@ -26,11 +33,43 @@ type (
 	}
 )
 
+func NewCache(ttl time.Duration) (Storage, error) {
+	c := &Cache{
+		Items: make(map[uuid.UUID]CacheItem),
+		mu:    sync.RWMutex{},
+		ttl:   ttl,
+	}
+	go c.cleanUp()
+	return c, nil
+}
+
+func (c *Cache) cleanUp() {
+	for range time.Tick(c.ttl) {
+		c.mu.RLock()
+		tempSlice := make([]uuid.UUID, 0, len(c.Items))
+		for key, item := range c.Items {
+			if item.isExpired() {
+				tempSlice = append(tempSlice, key)
+			}
+		}
+		c.mu.RUnlock()
+		c.mu.Lock()
+		for _, value := range tempSlice {
+			delete(c.Items, value)
+		}
+		c.mu.Unlock()
+	}
+}
+
+func (i *CacheItem) isExpired() bool {
+	return time.Now().After(i.ExpiresAt)
+}
+
 func (c *Cache) Get(key uuid.UUID) (*Balance, bool) {
 	c.mu.RLock()
 	defer c.mu.RUnlock()
 	item, ok := c.Items[key]
-	if item.IsExpired() {
+	if item.isExpired() {
 		return &Balance{}, false
 	} else {
 		return &item.Balance, ok
@@ -90,36 +129,4 @@ func (c *Cache) Withdraw(key uuid.UUID, amount int) error {
 	c.Items[key] = entry
 
 	return nil
-}
-
-func NewCache(ttl time.Duration) (*Cache, error) {
-	c := &Cache{
-		Items: make(map[uuid.UUID]CacheItem),
-		mu:    sync.RWMutex{},
-		ttl:   ttl,
-	}
-	go c.CleanUp()
-	return c, nil
-}
-
-func (c *Cache) CleanUp() {
-	for range time.Tick(c.ttl) {
-		c.mu.RLock()
-		tempSlice := make([]uuid.UUID, 0, len(c.Items))
-		for key, item := range c.Items {
-			if item.IsExpired() {
-				tempSlice = append(tempSlice, key)
-			}
-		}
-		c.mu.RUnlock()
-		c.mu.Lock()
-		for _, value := range tempSlice {
-			delete(c.Items, value)
-		}
-		c.mu.Unlock()
-	}
-}
-
-func (i *CacheItem) IsExpired() bool {
-	return time.Now().After(i.ExpiresAt)
 }

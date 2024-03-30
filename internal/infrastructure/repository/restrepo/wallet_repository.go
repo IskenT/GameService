@@ -20,11 +20,11 @@ type WalletRepository interface {
 }
 
 type walletRepository struct {
-	cache  *cache.Cache
+	cache  cache.Storage
 	logger logger.Logger
 }
 
-func NewWalletRepository(ctx context.Context, cache *cache.Cache, logger logger.Logger) WalletRepository {
+func NewWalletRepository(ctx context.Context, cache cache.Storage, logger logger.Logger) WalletRepository {
 	return &walletRepository{
 		cache:  cache,
 		logger: logger,
